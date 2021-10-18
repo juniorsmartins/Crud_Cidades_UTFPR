@@ -78,10 +78,8 @@
                         <td>${cidade.estado}</td>
                         <td>
                             <div class="d-flex d-justify-content-center">
-                            <a href="/preparaAlterar?nome=${cidade.nome}&estado=${cidade.estado}" 
-                            	class="btn btn-warning mr-3">ALTERAR</a>
-                            <a href="/excluir?nome=${cidade.nome}&estado=${cidade.estado}" 
-                            	class="btn btn-danger">EXCLUIR</a>
+                            <a href="/preparaAlterar?nome=${cidade.nome}&estado=${cidade.estado}" class="btn btn-warning mr-3">ALTERAR</a>
+                            <a href="/excluir?nome=${cidade.nome}&estado=${cidade.estado}" class="btn btn-danger">EXCLUIR</a>
                             </div>
                         </td>
                     </tr>

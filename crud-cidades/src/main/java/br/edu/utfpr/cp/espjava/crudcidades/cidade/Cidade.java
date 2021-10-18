@@ -1,11 +1,10 @@
-package br.edu.utfpr.cp.espjava.crudcidades.visao;
+package br.edu.utfpr.cp.espjava.crudcidades.cidade;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public final class Cidade 
 {
-
     @NotBlank(message = "{app.cidade.blank}")
     @Size(min = 4, max = 60, message = "{app.cidade.size}")
     private final String nome;
