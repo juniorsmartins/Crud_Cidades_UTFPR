@@ -15,7 +15,8 @@ public class CrudCidadesApplication
 	{SpringApplication.run(CrudCidadesApplication.class, args);}
 
 	@Bean
-    public MessageSource messageSource() {
+    public MessageSource messageSource() 
+	{
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");
@@ -23,9 +24,18 @@ public class CrudCidadesApplication
     }
 
 	@Bean
-    public Validator getValidator() {
+    public Validator getValidator() 
+	{
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
 }
+
+
+
+
+
+
+
+
