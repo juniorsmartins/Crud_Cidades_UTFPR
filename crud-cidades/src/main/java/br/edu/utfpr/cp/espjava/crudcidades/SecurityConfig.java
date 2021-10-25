@@ -1,7 +1,10 @@
 package br.edu.utfpr.cp.espjava.crudcidades;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,18 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception
-	{
-		auth.inMemoryAuthentication().withUser("joo")
-									.password(cifrador().encode("123"))
-									.authorities("listar")
-									.and()
-									.withUser("ana")
-									.password(cifrador().encode("321"))
-									.authorities("admin");
-	}
-	
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http.csrf().disable()
@@ -47,4 +38,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	{
 		return new BCryptPasswordEncoder();
 	}
+	
+	@EventListener(ApplicationReadyEvent.class)
+	public void printSenhas()
+	{System.out.println(this.cifrador().encode("test123"));}
+	
+	@EventListener(InteractiveAuthenticationSuccessEvent.class)
+	public void printUsuarioAtual(InteractiveAuthenticationSuccessEvent event)
+	{
+		var usuario = event.getAuthentication().getName();
+		System.out.println(usuario);
+	}
 }
+
+
+
+
+
+
